@@ -1,0 +1,33 @@
+* {
+    font-family: sans-serif;
+}
+
+.inline {
+    display: inline-block;
+    vertical-align: top;
+    width: 300px;
+    height: 300px;
+    padding: 30px;
+    padding-left: 60px;
+
+}
+
+
+.border {
+    border-left: 5px solid blue;
+    width: 500px;
+}
+
+.red{
+    color: red;
+}
+.blue{
+    color: blue;
+}
+.green{
+    color: green;
+}
+
+.big {
+    font-size: 150%;
+}

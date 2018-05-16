@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Django Session Words</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'session_words/css/session_words_styles.css' %}">
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="header">
+        <div class="navbar">
+          <h1>Assignment: Session Words w/ Django</h1>
+        </div>
+      </div>
+      <div class="container">
+        <div class="inline">
+          <form class="from-group" action="/process" method="post">
+            {% csrf_token %}
+            <h3>Add a new word:</h3>
+            <input type="text" name="word" placeholder="Word">
+            <p>Choose a color:</p>
+            <input type="radio" name="color" value="red">Red<br>
+            <input type="radio" name="color" value="green">Green<br>
+            <input type="radio" name="color" value="blue">Blue<br><br>
+            <input type="checkbox" name="big" value="big"> Show in BIG fonts!<br><br>
+            <input type="hidden" name="time" value="{% now "H:i jS F Y" %}">
+            <input type="submit" name="" value="Add to Session">
+          </form>
+
+          <div class="inline border">
+
+            <a href="/clear"><button>Clear session</button></a>
+            <p>Number of times this page was visited: {{request.session.visits}}</p>
+            {% for i in request.session.words %}
+                <p class="{{i.color}} {{i.big}}">{{i.word}} - added on {{i.time}}</p>
+                <!-- <p>{{ i }}</p> -->
+            {% endfor %}
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
